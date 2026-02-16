@@ -119,15 +119,18 @@ h1{
   const noBtn  = document.getElementById("noBtn")  || document.querySelector(".no");
   const btnArea = document.getElementById("btnArea") || document.querySelector(".btn-container");
   const result = document.getElementById("result");
+  const title = document.querySelector(".card h1"); // ✅ 추가
 
-  if (!yesBtn || !noBtn || !btnArea) {
-    // 요소가 없으면(복붙 실수) 그냥 종료
-    return;
-  }
+  if (!yesBtn || !noBtn || !btnArea) return;
 
   yesBtn.addEventListener("click", () => {
     document.body.style.backgroundImage =
       'linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url("02.jpg")';
+
+    // ✅ 여기 2줄 추가: 질문/버튼 숨기기
+    if (title) title.style.display = "none";
+    btnArea.style.display = "none";
+
     if (result) result.style.display = "block";
     createHearts();
   });
